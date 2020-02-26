@@ -1,29 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-const firebase = require('../src/firebaseConfig');
-var db = firebase.firestore();
+import React, {useState} from 'react';
+import Header from './components/Header';
+import CTA from './components/CTA';
+import FriendsList from './components/FriendsList';
+import AddFriendFragment from './components/AddFriendFragment';
+import ApolloClient from 'apollo-boost';
+import {ApolloProvider} from 'react-apollo';
 
+// apollo client setup
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+})
 
 const App = () => {
-  const addFriend = async(name,location,notes) => {  
-    await db.collection("Users").add({ 
-        name, 
-        location, 
-        notes,
-        timestamp: Date.now()
-    })
-  }
+  const [addFriend,setAddFriend] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onClick={() => addFriend('Jacob','New York, NY','Testing')}>Add Document to Firebase</button>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Header />
+      <FriendsList />
+      <CTA onClick={setAddFriend}/>
+      <AddFriendFragment show={addFriend}/>
+    </ApolloProvider>
   );
 }
 

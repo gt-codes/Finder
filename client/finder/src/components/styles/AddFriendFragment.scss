@@ -1,0 +1,31 @@
+@import '../variables';
+* {
+    box-sizing: border-box;
+}
+.aff-wrapper {
+    height: 100px;
+    max-width: 800px;
+    box-shadow: 0 -5px 10px $shadowLight;
+    z-index: 50;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    margin-left: 25%;
+    padding: 16px;
+    background-color: $bg;
+    transform: translateY(100%);
+    transition: all .35s;
+    &.show {
+        transform: translateY(0%);
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .aff-wrapper {
+        width: 100vw;
+        margin-left: 0;
+    }
+}

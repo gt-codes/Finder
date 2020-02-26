@@ -1,0 +1,11 @@
+@import '../variables';
+
+.fl-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 64px;
+    & .fl-container {
+        width: 75%;
+    }
+}

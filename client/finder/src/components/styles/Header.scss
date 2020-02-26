@@ -1,0 +1,23 @@
+@import '../variables';
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', ;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.header-container {
+    background-color: $bg;
+    height: 15vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px $shadowLight;
+    h1 {
+        color: $textPrimary;
+        font-size: 32px;
+        text-align: center;
+    }
+}

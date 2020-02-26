@@ -1,0 +1,20 @@
+@import '../variables';
+
+.cta-container {
+    height: 55px;
+    width: 55px;
+    border-radius: 27px;
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    background-color: $secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 25;
+    & .material-icons {
+        color: $bg;
+        font-size: 36px;
+    }
+}
