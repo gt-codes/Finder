@@ -150,10 +150,11 @@ const getFriend = async(id) => {
 }
 
 
-const addFriend = async({name,location,notes}) => {  
+const addFriend = async({name,city,state,notes}) => {  
     let docRef = await db.collection("Users").add({ 
         name, 
-        location, 
+        city, 
+        state,
         notes,
         timestamp: Date.now()
     })

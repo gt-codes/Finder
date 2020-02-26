@@ -1,8 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+const firebase = require('../src/firebaseConfig');
+var db = firebase.firestore();
 
-function App() {
+
+const App = () => {
+  const addFriend = async(name,location,notes) => {  
+    await db.collection("Users").add({ 
+        name, 
+        location, 
+        notes,
+        timestamp: Date.now()
+    })
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -10,14 +21,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={() => addFriend('Jacob','New York, NY','Testing')}>Add Document to Firebase</button>
       </header>
     </div>
   );
