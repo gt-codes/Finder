@@ -1,0 +1,92 @@
+@import '../variables';
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+.df-wrapper {
+    height: 300px;
+    max-width: 800px;
+    box-shadow: 0 -5px 10px $shadowLight;
+    z-index: 50;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    margin-left: 25%;
+    padding: 24px;
+    background-color: $bg;
+    transform: translateY(110%);
+    transition: all .35s;
+    &.show {
+        transform: translateY(5%);
+    }
+    & #close {
+        color: $primary;
+        padding: 4px;
+        cursor: pointer;
+    }
+    p {
+        margin-top: 25px;
+        font-style: italic;
+        color: $textSecondary;
+        text-align: center;
+    }
+    & .df-li {
+        border: 1px solid #2767b2;
+        border-radius: 4px;
+        padding: 8px;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        img {
+            width: 25px;
+            height: 25px;
+        }
+        h3 {
+            font-weight: 500;
+            color: #2767b2;
+        }
+    }
+    & .df-main {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        img {
+            border-radius: 50%;
+            height: 75px;
+            width: 75px;
+        }
+        & .df-md {
+            h3 {
+                font-size: 24px;
+                color: $textPrimary;
+            }
+            & .df-l {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;   
+                & .material-icons {
+                    color: $secondary;
+                    font-size: 24px;
+                }     
+                h4 {
+                    color: $textPrimary;
+                    margin-left: 5px;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .df-wrapper {
+        width: 100vw;
+        margin-left: 0;
+    }
+}

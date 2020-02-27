@@ -14,6 +14,8 @@ const AddFriendFragment = (props) => {
         props.close(false);
     } 
     const addFriend = () => {
+        if(name==='' || location==='' || notes==='')
+            return;
         props.addFriendMutation({
             variables: {
                 name,
@@ -30,30 +32,37 @@ const AddFriendFragment = (props) => {
     }
     return (
         <div className={props.show ? 'aff-wrapper show' : 'aff-wrapper'}>
-            <div className='aff-tr'>
-                <input 
-                    placeholder='Name'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <input 
-                    placeholder='Location'
-                    value={location}
-                    onChange={e => setLocation(e.target.value)}                    
-                />
-            </div>
-            <div className='aff-br'>
-                <h3>Notes</h3>
-                <textarea 
-                    placeholder="Where'd you meet this person?"
-                    value={notes}
-                    onChange={e => setNotes(e.target.value)}
-                ></textarea>
-            </div>
-            <div className='aff-footer'>
-                <div onClick={closeFragment}>Cancel</div>
-                <div onClick={addFriend}>Confirm</div>
-            </div>
+            <form>
+                <div className='aff-tr'>
+                    <input 
+                        placeholder='Name'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        required
+                        type='text'
+                    />
+                    <input 
+                        placeholder='Location'
+                        value={location}
+                        onChange={e => setLocation(e.target.value)} 
+                        required           
+                        type='text'        
+                    />
+                </div>
+                <div className='aff-br'>
+                    <h3>Notes</h3>
+                    <textarea 
+                        placeholder="Where'd you meet this person?"
+                        value={notes}
+                        onChange={e => setNotes(e.target.value)}
+                        required
+                    ></textarea>
+                </div>
+                <div className='aff-footer'>
+                    <div onClick={closeFragment}>Cancel</div>
+                    <button type='submit' onClick={addFriend}>Confirm</button>
+                </div>
+            </form>
         </div>
     );
 }

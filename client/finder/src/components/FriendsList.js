@@ -3,10 +3,11 @@ import './styles/FriendsList.css';
 import { graphql } from 'react-apollo'
 import {getFriendsQuery} from '../queries'
 
-const Friend = ({data}) => {
+const Friend = (props) => {
+    const {data} = props;
     return (
-        <div className='fn-container'>
-            <img src={'https://i.pravatar.cc/50'} alt='avatar'/>
+        <div className='fn-container' onClick={() => props.openFriend(true)}>
+            <img src={'https://i.pravatar.cc/75'} alt='avatar'/>
             <div className='fn-md'>
                 <div className='fn-md-tr'>
                     <h3>{data.name}</h3>
@@ -29,7 +30,7 @@ const FriendsList = (props) => {
                 {
                     friends ?
                         friends.map((item,idx) => (
-                            <Friend data={item} key={idx}/>
+                            <Friend data={item} key={idx} openFriend={props.openFriend}/>
                         ))
                     :
                     <div>
