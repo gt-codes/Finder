@@ -1,9 +1,10 @@
 @import '../variables';
 * {
     box-sizing: border-box;
+    outline: none;
 }
 .aff-wrapper {
-    height: 100px;
+    height: 300px;
     max-width: 800px;
     box-shadow: 0 -5px 10px $shadowLight;
     z-index: 50;
@@ -13,12 +14,75 @@
     bottom: 0;
     width: 50%;
     margin-left: 25%;
-    padding: 16px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 24px;
     background-color: $bg;
     transform: translateY(100%);
     transition: all .35s;
     &.show {
         transform: translateY(0%);
+    }
+    & .aff-tr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input {
+            border: none;
+            max-width: 250px;
+            border-bottom: 1px solid $secondary;
+            font-size: 24px;
+            color: $textPrimary;
+            &::placeholder {
+                font-size: 24px;
+            }
+        }
+    }
+    & .aff-br {
+        h3 {
+            color: #757575;
+            font-weight: 400;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        textarea {
+            border: none;
+            font-size: 24px;
+            resize: vertical;
+            width: 100%;
+            max-height: 50px;
+            font-size: 16px;
+            color: $textPrimary;
+            &::placeholder {
+                font-size: 16px;
+                color: $disabledText;
+            }
+        }
+    }
+    & .aff-footer {
+        bottom: 16px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        min-width: 300px;
+        max-width: 750px;
+        & div {
+            padding: 6px 12px;
+            font-size: 24px;
+            background-color: $bg;
+            color: $secondary;
+            border-radius: 6px;
+            border: 1px solid $secondary;
+            min-width: 125px;
+            text-align: center;
+            cursor: pointer;
+            &:nth-child(2) {
+                margin-left: 10px;
+                border-radius: 6px;
+                background-color: $secondary;
+                color: $bg;
+            }
+        }
     }
 }
 
@@ -27,5 +91,18 @@
     .aff-wrapper {
         width: 100vw;
         margin-left: 0;
+        & .aff-tr {
+            input {
+                max-width: 135px;
+            }
+        }
+        & .aff-footer {
+            justify-content: center;
+            & div {
+                &:nth-child(2) {
+                    margin-left: 5px;
+                }
+            }
+        }
     }
 }

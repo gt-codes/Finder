@@ -1,5 +1,11 @@
 @import '../variables';
-
+html {
+    overflow: hidden;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
 .fl-wrapper {
     display: flex;
     justify-content: center;
@@ -7,5 +13,42 @@
     padding: 64px;
     & .fl-container {
         width: 75%;
+        height: 85vh;
+        overflow-y: scroll;
+    }
+}
+
+.fn-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;   
+    border: 1px solid; 
+    margin-bottom: 20px;
+    border-radius: 6px;
+    img {
+        width: 30%;
+        max-width: 50px;
+    }
+    & .fn-md {
+        padding: 4px 8px;
+        & .fn-md-tr {
+            display: grid;
+            justify-content: space-between;
+        }
+        // border: 1px solid red;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .fl-wrapper {
+        padding: 16px
+    }
+    .fn-container {
+        & .fn-md {
+            & .fn-md-tr {
+
+            }
+        }
     }
 }

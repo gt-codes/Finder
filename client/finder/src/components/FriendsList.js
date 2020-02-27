@@ -1,22 +1,19 @@
 import React from 'react';
 import './styles/FriendsList.css';
-import {gql} from 'apollo-boost';
 import { graphql } from 'react-apollo'
-
-const getFriendsQuery = gql`
-    {
-        friends {
-            name
-            city
-            state
-        }
-    }
-`
+import {getFriendsQuery} from '../queries'
 
 const Friend = ({data}) => {
     return (
         <div className='fn-container'>
-            <h3>{data.name}</h3>
+            <img src={'https://i.pravatar.cc/50'} alt='avatar'/>
+            <div className='fn-md'>
+                <div className='fn-md-tr'>
+                    <h3>{data.name}</h3>
+                    <h4>{data.city}, {data.state}</h4>
+                </div>
+                <p>{data.notes}</p>
+            </div>
         </div>
     );
 }
@@ -24,7 +21,6 @@ const Friend = ({data}) => {
 const FriendsList = (props) => {
     const {friends} = props.data;
     console.log(friends);
-    
     
     return (
         <div className='fl-wrapper'>

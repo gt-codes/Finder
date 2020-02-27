@@ -19,7 +19,7 @@ const App = () => {
       <Header />
       <FriendsList />
       <CTA onClick={setAddFriend}/>
-      <AddFriendFragment show={addFriend}/>
+      <AddFriendFragment show={addFriend} close={setAddFriend}/>
     </ApolloProvider>
   );
 }

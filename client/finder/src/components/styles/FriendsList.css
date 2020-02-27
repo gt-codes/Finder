@@ -1,3 +1,12 @@
+html {
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .fl-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13,5 +22,46 @@
 
 .fl-wrapper .fl-container {
   width: 75%;
+  height: 85vh;
+  overflow-y: scroll;
+}
+
+.fn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.fn-container img {
+  width: 30%;
+  max-width: 50px;
+}
+
+.fn-container .fn-md {
+  padding: 4px 8px;
+}
+
+.fn-container .fn-md .fn-md-tr {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .fl-wrapper {
+    padding: 16px;
+  }
 }
 /*# sourceMappingURL=FriendsList.css.map */

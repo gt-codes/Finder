@@ -1,10 +1,11 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none;
 }
 
 .aff-wrapper {
-  height: 100px;
+  height: 300px;
   max-width: 800px;
   -webkit-box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
           box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
@@ -15,7 +16,11 @@
   bottom: 0;
   width: 50%;
   margin-left: 25%;
-  padding: 16px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+  padding: 24px;
   background-color: #fff;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
@@ -28,11 +33,129 @@
           transform: translateY(0%);
 }
 
+.aff-wrapper .aff-tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.aff-wrapper .aff-tr input {
+  border: none;
+  max-width: 250px;
+  border-bottom: 1px solid #F95738;
+  font-size: 24px;
+  color: #525456;
+}
+
+.aff-wrapper .aff-tr input::-webkit-input-placeholder {
+  font-size: 24px;
+}
+
+.aff-wrapper .aff-tr input:-ms-input-placeholder {
+  font-size: 24px;
+}
+
+.aff-wrapper .aff-tr input::-ms-input-placeholder {
+  font-size: 24px;
+}
+
+.aff-wrapper .aff-tr input::placeholder {
+  font-size: 24px;
+}
+
+.aff-wrapper .aff-br h3 {
+  color: #757575;
+  font-weight: 400;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.aff-wrapper .aff-br textarea {
+  border: none;
+  font-size: 24px;
+  resize: vertical;
+  width: 100%;
+  max-height: 50px;
+  font-size: 16px;
+  color: #525456;
+}
+
+.aff-wrapper .aff-br textarea::-webkit-input-placeholder {
+  font-size: 16px;
+  color: #c8c8c8;
+}
+
+.aff-wrapper .aff-br textarea:-ms-input-placeholder {
+  font-size: 16px;
+  color: #c8c8c8;
+}
+
+.aff-wrapper .aff-br textarea::-ms-input-placeholder {
+  font-size: 16px;
+  color: #c8c8c8;
+}
+
+.aff-wrapper .aff-br textarea::placeholder {
+  font-size: 16px;
+  color: #c8c8c8;
+}
+
+.aff-wrapper .aff-footer {
+  bottom: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 300px;
+  max-width: 750px;
+}
+
+.aff-wrapper .aff-footer div {
+  padding: 6px 12px;
+  font-size: 24px;
+  background-color: #fff;
+  color: #F95738;
+  border-radius: 6px;
+  border: 1px solid #F95738;
+  min-width: 125px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.aff-wrapper .aff-footer div:nth-child(2) {
+  margin-left: 10px;
+  border-radius: 6px;
+  background-color: #F95738;
+  color: #fff;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .aff-wrapper {
     width: 100vw;
     margin-left: 0;
+  }
+  .aff-wrapper .aff-tr input {
+    max-width: 135px;
+  }
+  .aff-wrapper .aff-footer {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .aff-wrapper .aff-footer div:nth-child(2) {
+    margin-left: 5px;
   }
 }
 /*# sourceMappingURL=AddFriendFragment.css.map */
