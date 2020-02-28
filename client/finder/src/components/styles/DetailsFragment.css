@@ -5,10 +5,7 @@
 }
 
 .df-wrapper {
-  height: 300px;
   max-width: 800px;
-  -webkit-box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
-          box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
   z-index: 50;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -17,6 +14,7 @@
   width: 50%;
   margin-left: 25%;
   padding: 24px;
+  padding-bottom: 36px;
   background-color: #fff;
   -webkit-transform: translateY(110%);
           transform: translateY(110%);
@@ -48,9 +46,7 @@
   border-radius: 4px;
   padding: 8px;
   margin-top: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;

@@ -39,7 +39,6 @@ const DetailsFragment = (props) => {
                             color={"#F95738"}
                             loading={true}
                         />
-                        <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500}}>Fetching Data</h1>
                     </div> 
                 )
             }

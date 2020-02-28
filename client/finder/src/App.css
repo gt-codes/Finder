@@ -1,0 +1,28 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.wrapper .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  z-index: -1;
+  -webkit-transition: all .35s ease-out;
+  transition: all .35s ease-out;
+}
+
+.wrapper .overlay.show {
+  opacity: 1;
+  z-index: 45;
+}
+/*# sourceMappingURL=App.css.map */

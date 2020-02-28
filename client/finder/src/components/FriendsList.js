@@ -22,7 +22,7 @@ const Friend = (props) => {
 
 const FriendsList = (props) => {
     const {friends,loading} = props.data;     
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState('');
 
     useEffect(() => {
         props.chooseFriend(selected)
@@ -48,7 +48,7 @@ const FriendsList = (props) => {
                 color={"#F95738"}
                 loading={true}
             />
-            <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500}}>Fetching Data</h1>
+            <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500}}>Grabbing Friends</h1>
         </div>        
     )
 }

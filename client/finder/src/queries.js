@@ -12,7 +12,7 @@ const getFriendsQuery = gql`
     }
 `
 const getFriendDetailsQuery = gql`
-    query($id: String!){
+    query($id: String){
         friendDetails(id: $id) {
             name
             city

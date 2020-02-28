@@ -23,8 +23,8 @@ html {
 .fl-wrapper .fl-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   gap: 16px;
@@ -70,6 +70,10 @@ html {
 @media only screen and (max-width: 600px) {
   .fl-wrapper {
     padding: 16px;
+  }
+  .fl-wrapper .fl-container {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
   }
 }
 /*# sourceMappingURL=FriendsList.css.map */

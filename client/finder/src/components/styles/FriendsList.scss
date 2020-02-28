@@ -13,7 +13,7 @@ html {
     padding: 64px;
     & .fl-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3,1fr);
         grid-template-rows: auto;
         gap: 16px;
         width: 100%;
@@ -49,5 +49,8 @@ html {
 @media only screen and (max-width: 600px) {
     .fl-wrapper {
         padding: 16px;
+        & .fl-container {
+            grid-template-columns: repeat(2,1fr);
+        }
     }
 }

@@ -4,11 +4,18 @@
   outline: none;
 }
 
+.overlay {
+  z-index: 45;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
 .aff-wrapper {
   height: 300px;
   max-width: 800px;
-  -webkit-box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
-          box-shadow: 0 -5px 10px rgba(200, 200, 200, 0.5);
   z-index: 50;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -32,6 +39,9 @@
 .aff-wrapper form {
   display: -ms-grid;
   display: grid;
+  z-index: 49;
+  background-color: #fff;
+  position: relative;
   -ms-grid-rows: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
 }
