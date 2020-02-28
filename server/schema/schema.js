@@ -112,7 +112,7 @@ const queryFriendsByState = async(state) => {
 const getFriend = async(id) => {
     let newdata;
     if(id === '') {
-        newdata = await db.collection("Users").get().then((querySnapshot) => {
+        newdata = await db.collection("Users").orderBy('timestamp','desc').get().then((querySnapshot) => {
             let data = []
             querySnapshot.forEach((doc) => {
                 data = [...data,doc.data()]
