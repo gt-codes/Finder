@@ -12,56 +12,36 @@ html {
     align-items: center;
     padding: 64px;
     & .fl-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 16px;
         width: 100%;
-        height: 85vh;
+        padding: 8px;
         overflow-y: scroll;
     }
 }
 
 .fn-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    box-shadow: 2px 2px 4px $shadowLight;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 125px;
+    box-shadow: 0 0 5px $shadowLight;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     img {
-        width: 100%;
-        // border-top-left-radius: 6px;
-        // border-bottom-left-radius: 6px;
-        border-radius: 6px;
+        display: block;
+        margin: auto;
+        border-radius: 50%;
+        height: 75px;
+        width: 75px;
+        margin-bottom: 8px;
     }
-    & .fn-md {
-        display: grid;
-        grid-template-rows: 2fr 3fr;
-        padding: 6px 8px;
-        & .fn-md-tr {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            & h3 {
-                color: $textPrimary;
-                font-size: 18px;
-            }
-            & h4 {
-                color: $textPrimary;
-                font-size: 16px;
-                font-weight: 400;
-            }
-        }
-        p {
-            align-self: center;
-            max-height: 32px;
-            line-height: 16px;
-            font-size: 14px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-        }
-        // border: 1px solid red;
+    h3 {
+        color: $textPrimary;
+        font-size: 18px;
+        text-align: center;
     }
 }
 
@@ -69,9 +49,5 @@ html {
 @media only screen and (max-width: 600px) {
     .fl-wrapper {
         padding: 16px;
-    }
-    .fn-container {
-        width: 95%;
-        margin-left: 2.5%;
     }
 }

@@ -21,82 +21,55 @@ html {
 }
 
 .fl-wrapper .fl-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  gap: 16px;
   width: 100%;
-  height: 85vh;
+  padding: 8px;
   overflow-y: scroll;
 }
 
 .fn-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 3fr;
-      grid-template-columns: 1fr 3fr;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  -webkit-box-shadow: 2px 2px 4px rgba(200, 200, 200, 0.5);
-          box-shadow: 2px 2px 4px rgba(200, 200, 200, 0.5);
-  cursor: pointer;
-}
-
-.fn-container img {
-  width: 100%;
-  border-radius: 6px;
-}
-
-.fn-container .fn-md {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 2fr 3fr;
-      grid-template-rows: 2fr 3fr;
-  padding: 6px 8px;
-}
-
-.fn-container .fn-md .fn-md-tr {
-  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 125px;
+  -webkit-box-shadow: 0 0 5px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 0 5px rgba(200, 200, 200, 0.5);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.fn-container .fn-md .fn-md-tr h3 {
+.fn-container img {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  margin-bottom: 8px;
+}
+
+.fn-container h3 {
   color: #525456;
   font-size: 18px;
-}
-
-.fn-container .fn-md .fn-md-tr h4 {
-  color: #525456;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.fn-container .fn-md p {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  max-height: 32px;
-  line-height: 16px;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  text-align: center;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .fl-wrapper {
     padding: 16px;
-  }
-  .fn-container {
-    width: 95%;
-    margin-left: 2.5%;
   }
 }
 /*# sourceMappingURL=FriendsList.css.map */
