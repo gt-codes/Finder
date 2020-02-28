@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header';
 import CTA from './components/CTA';
@@ -7,6 +7,8 @@ import AddFriendFragment from './components/AddFriendFragment';
 import DetailsFragment from './components/DetailsFragment';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
+import {StyledFirebaseAuth} from 'react-firebaseui';
+const firebase = require('./firebaseConfig');
 
 // apollo client setup
 const client = new ApolloClient({
@@ -14,26 +16,46 @@ const client = new ApolloClient({
 })
 
 const App = () => {
+  const [signedIn, setSignedIn] = useState(false);
   const [addFriend,setAddFriend] = useState(false);
   const [viewFriend,setViewFriend] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState('n');
 
-  return (
-    <ApolloProvider client={client}>
-      <div className='wrapper'>
-        <Header />
-        <FriendsList openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
-        <CTA onClick={setAddFriend}/>
-        <AddFriendFragment show={addFriend} close={setAddFriend}/>
-        <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>
-        <div className={viewFriend || addFriend ? 'overlay show' : 'overlay'}
-          onClick={() => {
-            addFriend ? setAddFriend(false) : setViewFriend(false);
-          }}
-        ></div>
-      </div>
-    </ApolloProvider>
-  );
+  const uiConfig = {
+    signInFlow: 'popup',
+    signInOptions: [ "google.com" ],
+    callbacks: { signedInSuccess: () => false }
+  }
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      setSignedIn(!!user)
+    })
+  },[]);
+
+  return !signedIn ?
+    (
+      <StyledFirebaseAuth 
+        uiConfig={uiConfig}
+        firebaseAuth={firebase.auth()}
+      />
+    )
+  :
+    (
+      <ApolloProvider client={client}>
+        <div className='wrapper'>
+          <Header onClick={() => firebase.auth().signOut()}/>
+          <FriendsList openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
+          <CTA onClick={setAddFriend}/>
+          <AddFriendFragment show={addFriend} close={setAddFriend}/>
+          <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>
+          <div className={viewFriend || addFriend ? 'overlay show' : 'overlay'}
+            onClick={() => {
+              addFriend ? setAddFriend(false) : setViewFriend(false);
+            }}
+          ></div>
+        </div>
+      </ApolloProvider>
+    );
 }
 
 export default App;
