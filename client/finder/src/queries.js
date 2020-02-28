@@ -1,13 +1,10 @@
 import {gql} from 'apollo-boost';
 
 const getFriendsQuery = gql`
-    {
-        friends {
-            graphqlID
+    query($id: String){
+        friends(uid: $id) {
             name
-            city
-            state
-            notes
+            graphqlID
         }
     }
 `
@@ -23,8 +20,9 @@ const getFriendDetailsQuery = gql`
 `
 
 const addFriendMutation = gql`
-    mutation($name: String!, $city: String!, $state: String!, $notes: String!) {
+    mutation($uid: String!, $name: String!, $city: String!, $state: String!, $notes: String!) {
         addFriend(
+            uid:$uid,
             name:$name,
             city:$city,
             state:$state,

@@ -16,6 +16,7 @@ const FriendType = new GraphQLObjectType({
     name: 'Friend',
     description: 'A regular user in the app',
     fields: () => ({
+        uid: { type: GraphQLString },
         graphqlID: { type: GraphQLString },
         name: { type: GraphQLString },
         city: { type: GraphQLString },
@@ -59,8 +60,9 @@ const RootQuery = new GraphQLObjectType({
         },
         friends: {
             type: GraphQLList(FriendType),
+            args: { uid: {type: GraphQLString} },
             resolve(parent, args) {
-                return getFriend('');
+                return getFriend('',args.uid);
             }
         },
         friendDetails: {
@@ -109,10 +111,10 @@ const queryFriendsByState = async(state) => {
     }) 
     return newdata  
 }
-const getFriend = async(id) => {
+const getFriend = async(id='',uid='') => {
     let newdata;
     if(id === '') {
-        newdata = await db.collection("Users").orderBy('timestamp','desc').get().then((querySnapshot) => {
+        newdata = await db.collection("Users").where("uid",'==',uid).orderBy('timestamp','desc').get().then((querySnapshot) => {
             let data = []
             querySnapshot.forEach((doc) => {
                 data = [...data,doc.data()]
@@ -133,7 +135,7 @@ const getFriend = async(id) => {
 }
 
 
-const addFriend = async({name,city,state,notes}) => {  
+const addFriend = async({uid,name,city,state,notes}) => {  
     let docRef = await db.collection("Users").add({ 
         name, 
         city, 
@@ -142,6 +144,7 @@ const addFriend = async({name,city,state,notes}) => {
         timestamp: Date.now()
     })
     db.collection("Users").doc(docRef.id).update({
+        "uid":uid,
         "graphqlID": docRef.id
     })
     return getFriend(docRef.id);
@@ -170,6 +173,7 @@ const Mutation = new GraphQLObjectType({
         addFriend: {
             type: FriendType,
             args: {
+                uid: {type: GraphQLNonNull(GraphQLString)},
                 name: {type: GraphQLNonNull(GraphQLString)},
                 city: {type: GraphQLNonNull(GraphQLString)},
                 state: {type: GraphQLNonNull(GraphQLString)},

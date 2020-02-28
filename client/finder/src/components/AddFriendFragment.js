@@ -5,6 +5,7 @@ import * as compose from 'lodash.flowright';
 import {addFriendMutation, getFriendsQuery} from '../queries';
 
 const AddFriendFragment = (props) => {
+    const {currUser} = props;
     const [name,setName] = useState('');
     const [location,setLocation] = useState('');
     const [notes,setNotes] = useState('');
@@ -18,6 +19,7 @@ const AddFriendFragment = (props) => {
             return;
         props.addFriendMutation({
             variables: {
+                uid:currUser,
                 name,
                 city:location.split(', ')[0],
                 state:location.split(', ')[1],

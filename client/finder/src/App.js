@@ -17,6 +17,7 @@ const client = new ApolloClient({
 
 const App = () => {
   const [signedIn, setSignedIn] = useState(false);
+  const [currUser,setCurrUser] = useState(null);
   const [addFriend,setAddFriend] = useState(false);
   const [viewFriend,setViewFriend] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState('n');
@@ -29,6 +30,7 @@ const App = () => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       setSignedIn(!!user)
+      setCurrUser(user)
     })
   },[]);
 
@@ -44,9 +46,9 @@ const App = () => {
       <ApolloProvider client={client}>
         <div className='wrapper'>
           <Header onClick={() => firebase.auth().signOut()}/>
-          <FriendsList openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
+          <FriendsList currUser={currUser ? currUser.uid : 'n'} openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
           <CTA onClick={setAddFriend}/>
-          <AddFriendFragment show={addFriend} close={setAddFriend}/>
+          <AddFriendFragment currUser={currUser ? currUser.uid : 'n'} show={addFriend} close={setAddFriend}/>
           <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>
           <div className={viewFriend || addFriend ? 'overlay show' : 'overlay'}
             onClick={() => {

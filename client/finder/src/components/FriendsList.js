@@ -25,10 +25,12 @@ const FriendsList = (props) => {
     const {friends,loading} = props.data;     
     const [selected, setSelected] = useState('');
 
+    console.log(props);
+    
     useEffect(() => {
         props.chooseFriend(selected)
     }, [selected,props])
-    
+        
     return !loading ?
         friends.length === 0 ?
         (
@@ -64,4 +66,12 @@ const FriendsList = (props) => {
     )
 }
 
-export default graphql(getFriendsQuery)(FriendsList);
+export default graphql(getFriendsQuery, {
+    options: props => {
+        return {
+            variables: {
+                id: props.currUser
+            }
+        }
+    }
+})(FriendsList);
