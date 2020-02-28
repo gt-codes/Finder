@@ -54,7 +54,6 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLList(FriendType),
             args: { state: {type: GraphQLString} },
             resolve(parent, args) { //code to get data from db
-                // return friends.find(friend => friend.id === args.id)
                 return queryFriendsByState(args.state)
             }
         },

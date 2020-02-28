@@ -9,7 +9,8 @@
 }
 
 .header-container {
-  background-color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(#F95738), to(#f93878));
+  background: linear-gradient(to right, #F95738, #f93878);
   height: 15vh;
   width: 100vw;
   display: -webkit-box;
@@ -26,7 +27,7 @@
 }
 
 .header-container h1 {
-  color: #525456;
+  color: #fff;
   font-size: 32px;
   text-align: center;
 }

@@ -125,7 +125,7 @@
 }
 
 .aff-wrapper form .aff-footer div {
-  padding: 6px 12px;
+  padding: 8px 12px;
   font-size: 24px;
   background-color: #fff;
   color: #F95738;
@@ -133,17 +133,20 @@
   border: 1px solid #F95738;
   min-width: 125px;
   text-align: center;
+  font-weight: 703000;
   cursor: pointer;
 }
 
 .aff-wrapper form .aff-footer button {
-  padding: 6px 12px;
+  padding: 8px 12px;
   font-size: 24px;
   border: none;
   margin-left: 10px;
   border-radius: 6px;
-  background-color: #F95738;
+  background: -webkit-gradient(linear, left top, right top, from(#F95738), to(#f93878));
+  background: linear-gradient(to right, #F95738, #f93878);
   color: #fff;
+  font-weight: 300;
   min-width: 125px;
   text-align: center;
   cursor: pointer;

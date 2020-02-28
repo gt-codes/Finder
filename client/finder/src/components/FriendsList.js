@@ -3,6 +3,7 @@ import './styles/FriendsList.css';
 import { graphql } from 'react-apollo'
 import {getFriendsQuery} from '../queries'
 import avi from '../resources/defaultAvi.png'
+import { DotLoader } from 'react-spinners';
 
 const Friend = (props) => {
     const {data} = props;
@@ -20,28 +21,36 @@ const Friend = (props) => {
 }
 
 const FriendsList = (props) => {
-    const {friends} = props.data; 
+    const {friends,loading} = props.data;     
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
         props.chooseFriend(selected)
     }, [selected,props])
-    return (
+    
+    return !loading ?
+    (
         <div className='fl-wrapper'>
             <div className='fl-container'>
                 {
-                    friends ?
-                        friends.map((item,idx) => (
-                            <Friend data={item} key={idx} openFriend={props.openFriend} selectFriend={setSelected}/>
-                        ))
-                    :
-                    <div>
-                        <h1 style={{textAlign:'center'}}>Loading Your Friends</h1>
-                    </div>
+                    friends.map((item,idx) => (
+                        <Friend data={item} key={idx} openFriend={props.openFriend} selectFriend={setSelected}/>
+                    ))
                 }
             </div>
         </div>
-    );
+    ) : 
+    (
+        <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+            <DotLoader
+                css=""
+                size={50}
+                color={"#F95738"}
+                loading={true}
+            />
+            <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500}}>Fetching Data</h1>
+        </div>        
+    )
 }
 
 export default graphql(getFriendsQuery)(FriendsList);

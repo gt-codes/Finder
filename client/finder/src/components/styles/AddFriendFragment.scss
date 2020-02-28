@@ -31,7 +31,7 @@
             input {
                 border: none;
                 max-width: 250px;
-                border-bottom: 1px solid $secondary;
+                border-bottom: 1px solid $primary;
                 font-size: 24px;
                 color: $textPrimary;
                 &::placeholder {
@@ -68,24 +68,26 @@
             min-width: 300px;
             max-width: 750px;
             & div {
-                padding: 6px 12px;
+                padding: 8px 12px;
                 font-size: 24px;
                 background-color: $bg;
-                color: $secondary;
+                color: $primary;
                 border-radius: 6px;
-                border: 1px solid $secondary;
+                border: 1px solid $primary;
                 min-width: 125px;
                 text-align: center;
+                font-weight: 703000;
                 cursor: pointer;
             }
             & button {
-                padding: 6px 12px;
+                padding: 8px 12px;
                 font-size: 24px;
                 border: none;
                 margin-left: 10px;
                 border-radius: 6px;
-                background-color: $secondary;
+                background: linear-gradient(to right, $primary, #f93878 );
                 color: $bg;    
+                font-weight: 300;
                 min-width: 125px;
                 text-align: center;
                 cursor: pointer;        

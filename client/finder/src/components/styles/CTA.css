@@ -5,7 +5,10 @@
   position: absolute;
   bottom: 32px;
   right: 32px;
-  background-color: #F95738;
+  background-color: #f93878;
+  opacity: .75;
+  -webkit-box-shadow: 0 3px 6px #F95738;
+          box-shadow: 0 3px 6px #F95738;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,6 +20,12 @@
           align-items: center;
   cursor: pointer;
   z-index: 25;
+  -webkit-transition: all .6s;
+  transition: all .6s;
+}
+
+.cta-container:hover {
+  opacity: 1;
 }
 
 .cta-container .material-icons {

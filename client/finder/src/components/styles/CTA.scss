@@ -8,11 +8,17 @@
     bottom: 32px;
     right: 32px;
     background-color: $secondary;
+    opacity: .75;
+    box-shadow: 0 3px 6px $primary;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     z-index: 25;
+    transition: all .6s;
+    &:hover {
+        opacity: 1;
+    }
     & .material-icons {
         color: $bg;
         font-size: 36px;
