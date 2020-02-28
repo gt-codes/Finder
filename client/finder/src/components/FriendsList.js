@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo'
 import {getFriendsQuery} from '../queries'
 import avi from '../resources/defaultAvi.png'
 import { DotLoader } from 'react-spinners';
+import EmptyState from './EmptyState';
 
 const Friend = (props) => {
     const {data} = props;
@@ -29,17 +30,27 @@ const FriendsList = (props) => {
     }, [selected,props])
     
     return !loading ?
-    (
-        <div className='fl-wrapper'>
-            <div className='fl-container'>
-                {
-                    friends.map((item,idx) => (
-                        <Friend data={item} key={idx} openFriend={props.openFriend} selectFriend={setSelected}/>
-                    ))
-                }
+        friends.length === 0 ?
+        (
+            <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                <EmptyState />
+                <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500, textAlign:'center',fontSize:24}}>You haven't added anyone yet</h1>
+                <h2 style={{marginTop:'10px',color:'#F95738',fontWeight:400, textAlign:'center',fontSize:20}}>Try adding someone!</h2>
+            </div>             
+        )
+        :
+        (
+            <div className='fl-wrapper'>
+                <div className='fl-container'>
+                    {
+                        friends.map((item,idx) => (
+                            <Friend data={item} key={idx} openFriend={props.openFriend} selectFriend={setSelected}/>
+                        ))
+                    }
+                </div>
             </div>
-        </div>
-    ) : 
+        ) 
+    : 
     (
         <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <DotLoader
