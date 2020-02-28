@@ -16,6 +16,7 @@ const FriendType = new GraphQLObjectType({
     name: 'Friend',
     description: 'A regular user in the app',
     fields: () => ({
+        graphqlID: { type: GraphQLString },
         name: { type: GraphQLString },
         city: { type: GraphQLString },
         state: { type: GraphQLString },
@@ -61,6 +62,13 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLList(FriendType),
             resolve(parent, args) {
                 return getFriend('');
+            }
+        },
+        friendDetails: {
+            type: FriendType,
+            args: { id: {type: GraphQLString} },
+            resolve(parent, args) {
+                return getFriend(args.id);
             }
         },
         locations: {
@@ -121,6 +129,7 @@ const getFriend = async(id) => {
             }       
         })        
     }    
+    
     return newdata  
 }
 
@@ -132,6 +141,9 @@ const addFriend = async({name,city,state,notes}) => {
         state,
         notes,
         timestamp: Date.now()
+    })
+    db.collection("Users").doc(docRef.id).update({
+        "graphqlID": docRef.id
     })
     return getFriend(docRef.id);
 }

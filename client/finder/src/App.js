@@ -15,14 +15,15 @@ const client = new ApolloClient({
 const App = () => {
   const [addFriend,setAddFriend] = useState(false);
   const [viewFriend,setViewFriend] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   return (
     <ApolloProvider client={client}>
       <Header />
-      <FriendsList openFriend={setViewFriend}/>
+      <FriendsList openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
       <CTA onClick={setAddFriend}/>
       <AddFriendFragment show={addFriend} close={setAddFriend}/>
-      <DetailsFragment show={viewFriend} close={setViewFriend}/>
+      <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>
     </ApolloProvider>
   );
 }

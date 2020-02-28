@@ -43,6 +43,7 @@
 }
 
 .df-wrapper .df-li {
+  cursor: pointer;
   border: 1px solid #2767b2;
   border-radius: 4px;
   padding: 8px;
