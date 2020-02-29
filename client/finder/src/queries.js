@@ -8,6 +8,7 @@ const getFriendsQuery = gql`
         }
     }
 `
+
 const getFriendDetailsQuery = gql`
     query($id: String){
         friendDetails(id: $id) {
@@ -15,6 +16,22 @@ const getFriendDetailsQuery = gql`
             city
             state
             notes
+        }
+    }
+`
+const queryFriendsByCity = gql`
+    query($city: String){
+        friendsByCity(city: $city) {
+            name
+            graphqlID
+        }
+    }
+`
+const queryFriendsByState = gql`
+    query($state: String){
+        friendsByState(state: $state) {
+            name
+            graphqlID
         }
     }
 `
@@ -33,4 +50,10 @@ const addFriendMutation = gql`
     }
 `
 
-export {getFriendsQuery, getFriendDetailsQuery, addFriendMutation};
+export {
+    getFriendsQuery, 
+    getFriendDetailsQuery, 
+    addFriendMutation,
+    queryFriendsByCity,
+    queryFriendsByState
+};

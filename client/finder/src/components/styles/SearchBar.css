@@ -1,0 +1,69 @@
+.sb-wrapper {
+  padding: 16px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.sb-wrapper .sb-container {
+  height: 50px;
+  width: 100%;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+  background-color: #fff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+}
+
+.sb-wrapper .sb-container .sb-f {
+  background: -webkit-gradient(linear, left top, right top, from(#F95738), to(#f93878));
+  background: linear-gradient(to right, #F95738, #f93878);
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 12px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sb-wrapper .sb-container .sb-s {
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: 0 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sb-wrapper .sb-container .sb-s .material-icons {
+  color: #F95738;
+  padding: 8px;
+}
+
+.sb-wrapper .sb-container .sb-s input {
+  margin-left: 10px;
+  border: none;
+  width: 90%;
+  font-size: 20px;
+  color: #525456;
+}
+/*# sourceMappingURL=SearchBar.css.map */

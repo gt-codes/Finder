@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import './styles/FriendsList.css';
 import { graphql } from 'react-apollo'
-import {getFriendsQuery} from '../queries'
+import * as compose from 'lodash.flowright';
+import {getFriendsQuery, queryFriendsByCity, queryFriendsByState} from '../queries'
 import avi from '../resources/defaultAvi.png'
 import { DotLoader } from 'react-spinners';
 import EmptyState from './EmptyState';
@@ -22,17 +23,18 @@ const Friend = (props) => {
 }
 
 const FriendsList = (props) => {
-    const {friends,loading} = props.data;     
+    const {friends,loading} = props.getFriendsQuery;     
     const [selected, setSelected] = useState('');
-
+    let friendsByCity,friendsByState;
+    let data;
     console.log(props);
     
     useEffect(() => {
         props.chooseFriend(selected)
     }, [selected,props])
-        
-    return !loading ?
-        friends.length === 0 ?
+    
+    if(!loading) {
+        return friends.length === 0 ?
         (
             <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                 <EmptyState />
@@ -51,9 +53,31 @@ const FriendsList = (props) => {
                     }
                 </div>
             </div>
-        ) 
-    : 
-    (
+        )         
+    }
+    // return !loading ?
+    //     friendsByState.length === 0 ?
+    //     (
+    //         <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+    //             <EmptyState />
+    //             <h1 style={{marginTop:'10px',color:'#525456',fontWeight:500, textAlign:'center',fontSize:24}}>You haven't added anyone yet</h1>
+    //             <h2 style={{marginTop:'10px',color:'#F95738',fontWeight:400, textAlign:'center',fontSize:20}}>Try adding someone!</h2>
+    //         </div>             
+    //     )
+    //     :
+    //     (
+    //         <div className='fl-wrapper'>
+    //             <div className='fl-container'>
+    //                 {
+    //                     friendsByState.map((item,idx) => (
+    //                         <Friend data={item} key={idx} openFriend={props.openFriend} selectFriend={setSelected}/>
+    //                     ))
+    //                 }
+    //             </div>
+    //         </div>
+    //     ) 
+    // : 
+    return (
         <div style={{width:'100vw',height:'83vh',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <DotLoader
                 css=""
@@ -65,13 +89,35 @@ const FriendsList = (props) => {
         </div>        
     )
 }
-
-export default graphql(getFriendsQuery, {
-    options: props => {
-        return {
-            variables: {
-                id: props.currUser
+export default compose(
+    graphql(getFriendsQuery, {
+        name: "getFriendsQuery",
+        options: props => {
+            return {
+                variables: {
+                    id: props.currUser
+                }
             }
         }
-    }
-})(FriendsList);
+    }),
+    graphql(queryFriendsByState, {
+        name: "queryFriendsByState",
+        options: props => {
+            return {
+                variables: {
+                    state: props.query
+                }
+            }
+        }
+    }), 
+    graphql(queryFriendsByCity, {
+        name: "queryFriendsByCity",
+        options: props => {
+            return {
+                variables: {
+                    city: props.query
+                }
+            }
+        }
+    }),    
+)(FriendsList);

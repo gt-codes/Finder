@@ -5,6 +5,7 @@ import CTA from './components/CTA';
 import FriendsList from './components/FriendsList';
 import AddFriendFragment from './components/AddFriendFragment';
 import DetailsFragment from './components/DetailsFragment';
+import SearchBar from './components/SearchBar';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 import {StyledFirebaseAuth} from 'react-firebaseui';
@@ -21,6 +22,7 @@ const App = () => {
   const [addFriend,setAddFriend] = useState(false);
   const [viewFriend,setViewFriend] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState('n');
+  const [searchQuery,setSearchQuery] = useState('n');
 
   const uiConfig = {
     signInFlow: 'popup',
@@ -46,7 +48,13 @@ const App = () => {
       <ApolloProvider client={client}>
         <div className='wrapper'>
           <Header onClick={() => firebase.auth().signOut()}/>
-          <FriendsList currUser={currUser ? currUser.uid : 'n'} openFriend={setViewFriend} chooseFriend={setSelectedFriend}/>
+          <SearchBar updateQuery={setSearchQuery}/>
+          <FriendsList 
+            query={searchQuery !== 'n' ? searchQuery : null} 
+            currUser={currUser ? currUser.uid : 'n'} 
+            openFriend={setViewFriend} 
+            chooseFriend={setSelectedFriend}
+          />
           <CTA onClick={setAddFriend}/>
           <AddFriendFragment currUser={currUser ? currUser.uid : 'n'} show={addFriend} close={setAddFriend}/>
           <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>

@@ -91,7 +91,9 @@ const getLocations = async() => {
     return newdata;
 }
 
-const queryFriendsByCity = async(city) => {    
+const queryFriendsByCity = async(city) => {   
+    if(!city)
+        getFriend() 
     let newdata = await db.collection("Users").where('city','==',city).get().then((querySnapshot) => {
         let data = []
         querySnapshot.forEach((doc) => {
@@ -101,7 +103,9 @@ const queryFriendsByCity = async(city) => {
     }) 
     return newdata  
 }
-const queryFriendsByState = async(state) => {    
+const queryFriendsByState = async(state) => { 
+    if(!state)
+        getFriend()    
     let newdata = await db.collection("Users").where('state','==',state).get().then((querySnapshot) => {
         let data = []
         querySnapshot.forEach((doc) => {
