@@ -1,8 +1,11 @@
 .sb-wrapper {
   padding: 16px;
   width: 100%;
-  margin: 0 auto;
+  margin: 15vh auto 0 auto;
+  position: relative;
   max-width: 500px;
+  background-color: #fff;
+  border-radius: 40px;
 }
 
 .sb-wrapper .sb-container {
@@ -66,5 +69,12 @@
   width: 90%;
   font-size: 20px;
   color: #525456;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .sb-wrapper {
+    border-radius: 0 40px 0 0;
+  }
 }
 /*# sourceMappingURL=SearchBar.css.map */

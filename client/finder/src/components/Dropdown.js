@@ -15,7 +15,7 @@ export default function SimpleMenu(props) {
 
   return (
     <div>
-      <div onClick={handleClick}>{props.currFilter}</div>
+      <div style={{padding: '0 24px'}} onClick={handleClick}>{props.currFilter}</div>
       <Menu
         id="filter"
         anchorEl={anchorEl}

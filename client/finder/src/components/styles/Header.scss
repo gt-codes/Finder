@@ -9,12 +9,14 @@
 }
 .header-container {
     background: linear-gradient(to right, $primary, #f93878 );
-    height: 15vh;
+    height: 20vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top:0;
     box-shadow: 0 5px 10px $shadowLight;
     h1 {
         color: $bg;
@@ -32,3 +34,4 @@
         background: transparent;
     }
 }
+
