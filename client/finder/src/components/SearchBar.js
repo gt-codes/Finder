@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles/SearchBar.css';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Dropdown from './Dropdown';
 
 const SearchBar = (props) => {
     const [filter,setFilter] = useState('city');
-    const [anchorEl, setAnchorEl] = useState(null);
     const [query,setQuery] = useState('');
     const placeholder = `Search by ${filter}`
 
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
+    useEffect(() => {
+        props.updateFilter(filter);
+    },[filter,props]);
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
     return (
         <div className='sb-wrapper'>
             <div className='sb-container'>
@@ -24,11 +18,12 @@ const SearchBar = (props) => {
                     <i className="material-icons" onClick={() => props.updateQuery(query)}>search</i>                  
                     <input
                         value={query} 
+                        onKeyPress={e => e.key === 'Enter' ? props.updateQuery(query) : null}
                         onChange={e => setQuery(e.target.value)}
                         placeholder={placeholder}
                     />
                 </div>
-                <div className='sb-f' onClick={handleClick}>
+                <div className='sb-f'>
                     <Dropdown updateFilter={setFilter} currFilter={filter.charAt(0).toUpperCase() + filter.slice(1)}/>
                 </div>
             </div>

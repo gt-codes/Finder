@@ -11,7 +11,7 @@ export default function SimpleMenu(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  };  
 
   return (
     <div>

@@ -22,7 +22,8 @@ const App = () => {
   const [addFriend,setAddFriend] = useState(false);
   const [viewFriend,setViewFriend] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState('n');
-  const [searchQuery,setSearchQuery] = useState('n');
+  const [searchQuery,setSearchQuery] = useState('');
+  const [filter,setFilter] = useState('city');
 
   const uiConfig = {
     signInFlow: 'popup',
@@ -48,9 +49,10 @@ const App = () => {
       <ApolloProvider client={client}>
         <div className='wrapper'>
           <Header onClick={() => firebase.auth().signOut()}/>
-          <SearchBar updateQuery={setSearchQuery}/>
+          <SearchBar updateQuery={setSearchQuery} updateFilter={setFilter}/>
           <FriendsList 
-            query={searchQuery !== 'n' ? searchQuery : null} 
+            query={searchQuery} 
+            filter={filter}
             currUser={currUser ? currUser.uid : 'n'} 
             openFriend={setViewFriend} 
             chooseFriend={setSelectedFriend}

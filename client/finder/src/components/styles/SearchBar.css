@@ -57,6 +57,7 @@
 .sb-wrapper .sb-container .sb-s .material-icons {
   color: #F95738;
   padding: 8px;
+  cursor: pointer;
 }
 
 .sb-wrapper .sb-container .sb-s input {
