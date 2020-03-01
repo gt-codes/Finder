@@ -71,9 +71,8 @@ const AddFriendFragment = (props) => {
                         required           
                         type='text'     
                         ref={locationInput}   
-                        // onFocus={() => setAnchorEl(locationInput.current)}
                     />
-                    <LongMenu data={filteredCities} anchor={anchorEl} setAnchor={setAnchorEl}/>
+                    <LongMenu data={filteredCities} anchor={anchorEl} setAnchor={setAnchorEl} setLocation={setLocation}/>
                 </div>
                 <div className='aff-br'>
                     <h3>Notes</h3>

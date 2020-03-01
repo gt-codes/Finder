@@ -36,15 +36,13 @@ export default function SimpleMenu(props) {
 
 function LongMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const {data,anchor,setAnchor} = props;
+  const {data,anchor,setAnchor,setLocation} = props;
   const open = Boolean(anchor);
   let cities = [];
   
   if(data.data)
     cities = data.data
-  
-  console.log(props);
-  
+    
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -54,17 +52,8 @@ function LongMenu(props) {
   };
 
   return (
-    <div>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
       <Menu
-        id="long-menu"
+        id="cities-menu"
         anchorEl={anchor}
         keepMounted
         open={open}
@@ -80,12 +69,16 @@ function LongMenu(props) {
         }}
       >
         {cities.map((option,idx) => (
-          <MenuItem key={idx} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem key={idx}
+            onClick={() => {
+              props.setLocation(`${option.city}, ${option.regionCode}`)
+              handleClose()
+            }}
+          >
             {option.city}, {option.regionCode}
           </MenuItem>
         ))}
       </Menu>
-    </div>
   );
 }
 
