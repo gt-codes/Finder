@@ -3,7 +3,7 @@ import './styles/FriendsList.css';
 import { graphql } from 'react-apollo'
 import * as compose from 'lodash.flowright';
 import {getFriendsQuery, queryFriendsByCity, queryFriendsByState} from '../queries'
-import avi from '../resources/defaultAvi.png'
+import avi from '../resources/images/defaultAvi.png'
 import { DotLoader } from 'react-spinners';
 import EmptyState from './EmptyState';
 

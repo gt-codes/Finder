@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles/DetailsFragment.css';
-import linkedin from '../resources/linkedin.png';
+import linkedin from '../resources/images/linkedin.png';
 import { graphql } from 'react-apollo';
 import {getFriendDetailsQuery} from '../queries';
 import { DotLoader } from 'react-spinners';
-import avi from '../resources/defaultAvi.png'
+import avi from '../resources/images/defaultAvi.png'
 
 const DetailsFragment = (props) => {
     const {friendDetails,loading} = props.data

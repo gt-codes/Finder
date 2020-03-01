@@ -24,3 +24,4 @@ yarn-error.log*
 
 *.css.map
 firebaseConfig.js
+rapidTables.js
