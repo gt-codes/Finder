@@ -6,19 +6,25 @@
   max-width: 500px;
   background-color: #fff;
   border-radius: 40px;
+  -webkit-box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+  -webkit-transition: all .35s;
+  transition: all .35s;
 }
 
 .sb-wrapper .sb-container {
   height: 50px;
   width: 100%;
   border-radius: 30px;
-  -webkit-box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
-          box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+  -webkit-box-shadow: none;
+          box-shadow: none;
   background-color: #fff;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 2fr 1fr;
       grid-template-columns: 2fr 1fr;
+  -webkit-transition: all .35s;
+  transition: all .35s;
 }
 
 .sb-wrapper .sb-container .sb-f {
@@ -75,6 +81,12 @@
 @media only screen and (max-width: 600px) {
   .sb-wrapper {
     border-radius: 0 40px 0 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .sb-wrapper .sb-container {
+    -webkit-box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+            box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
   }
 }
 /*# sourceMappingURL=SearchBar.css.map */
