@@ -12,4 +12,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-app.listen(4000, () => console.log('listening for requests on port 4000'))
+app.use(express.static('build'))
+app.use('*', express.static('build'))
+
+app.listen(3000, () => console.log('listening for requests on port 3000'))
