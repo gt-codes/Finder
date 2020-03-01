@@ -1,10 +1,10 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './styles/AddFriendFragment.css';
 import { graphql } from 'react-apollo';
 import * as compose from 'lodash.flowright';
 import {addFriendMutation, getFriendsQuery} from '../queries';
-import {LongMenu} from './Dropdown';
-import apiKey from '../rapidTables'
+// import apiKey from '../rapidTables';
+import groupedCities from '../resources/cities.js'
 
 const AddFriendFragment = (props) => {
     const {currUser} = props;
@@ -13,7 +13,7 @@ const AddFriendFragment = (props) => {
     const locationInput = useRef(null);
     const [notes,setNotes] = useState('');
     const [filteredCities,setFilteredCities] = useState([]);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openCities,setOpenCities] = useState(true);
 
     const closeFragment = () => {
         setName('');setLocation('');setNotes('');
@@ -37,22 +37,46 @@ const AddFriendFragment = (props) => {
         setName('');setLocation('');setNotes('');
         props.close(false);
     }    
-
+    
     const updateLocation = async(e) => {
         let currVal = e.target.value;
-        setLocation(e.target.value);
+        let temp = [];
+        let cities = []; 
 
-        let data = await fetch(`https://wft-geo-db.p.mashape.com/v1/geo/cities?limit=10&offset=0&namePrefix=${currVal}&countryIds=US`, {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': apiKey,
-            }
-        })
-        let cities = await data.json()
-        setFilteredCities(cities)        
-        setAnchorEl(locationInput.current)
+        if(!openCities)
+            setOpenCities(true)
+        
+        setLocation(currVal);
 
+        for (const state in groupedCities) {
+            let stateArray = Object.keys(groupedCities[state]).map(key => {
+                return [groupedCities[state][key]];
+            });        
+            temp = [...temp,stateArray.filter(currCity => currCity[0].city.includes(currVal))]
+        }   
+        temp.forEach(state => {
+            let a = []
+            state.forEach(item => a = [...a,item[0]])
+            cities = [...cities,a];
+        })                
+        
+        setFilteredCities(cities.filter(item => item.length > 0));
+        
+        // let data = await fetch(`https://wft-geo-db.p.mashape.com/v1/geo/cities?limit=10&offset=0&namePrefix=${currVal}&countryIds=US`, {
+        //     method: 'GET',
+        //     headers: {
+        //         'X-RapidAPI-Key': apiKey,
+        //     }
+        // })
+        // let cities = await data.json()
+        // setFilteredCities(cities.data)       
     }
+
+    useEffect(() => {
+        if(!props.addFriend)
+            setName('');setLocation('');setNotes('');
+    },[props]);
+
     return (
         <div className={props.show ? 'aff-wrapper show' : 'aff-wrapper'}>
             <form>
@@ -64,15 +88,28 @@ const AddFriendFragment = (props) => {
                         required
                         type='text'
                     />
-                    <input 
-                        placeholder='Location'
-                        value={location}
-                        onChange={updateLocation} 
-                        required           
-                        type='text'     
-                        ref={locationInput}   
-                    />
-                    <LongMenu data={filteredCities} anchor={anchorEl} setAnchor={setAnchorEl} setLocation={setLocation}/>
+                    <div className='aff-loc'>
+                        <input 
+                            placeholder='Location'
+                            value={location}
+                            onChange={updateLocation} 
+                            required           
+                            type='text'     
+                            ref={locationInput}   
+                        />
+                        <div className={location === '' ? 'filter-menu' : filteredCities.length > 0 && openCities ? 'filter-menu show' : 'filter-menu'}>
+                            {
+                                filteredCities.map((item,idx) => (
+                                    <li key={idx} 
+                                        onClick={() => {
+                                            setOpenCities(false)
+                                            setLocation(`${item[0].city}, ${item[0].state}`)
+                                        }}
+                                    >{item[0].city}, {item[0].state}</li>
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div className='aff-br'>
                     <h3>Notes</h3>
