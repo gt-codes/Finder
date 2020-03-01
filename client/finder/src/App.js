@@ -24,6 +24,7 @@ const App = () => {
   const [selectedFriend, setSelectedFriend] = useState('n');
   const [searchQuery,setSearchQuery] = useState('');
   const [filter,setFilter] = useState('city');
+  const [showMessage,setShowMessage] = useState(false);
 
   const uiConfig = {
     signInFlow: 'popup',
@@ -56,9 +57,15 @@ const App = () => {
             currUser={currUser ? currUser.uid : 'n'} 
             openFriend={setViewFriend} 
             chooseFriend={setSelectedFriend}
+            showMessage={showMessage}
           />
           <CTA onClick={setAddFriend}/>
-          <AddFriendFragment currUser={currUser ? currUser.uid : 'n'} show={addFriend} close={setAddFriend}/>
+          <AddFriendFragment 
+            showMessageFn={setShowMessage} 
+            currUser={currUser ? currUser.uid : 'n'} 
+            show={addFriend} 
+            close={setAddFriend}
+          />
           <DetailsFragment show={viewFriend} chosenFriend={selectedFriend} close={setViewFriend}/>
           <div className={viewFriend || addFriend ? 'overlay show' : 'overlay'}
             onClick={() => {

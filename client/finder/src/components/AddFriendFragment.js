@@ -7,7 +7,7 @@ import {addFriendMutation, getFriendsQuery} from '../queries';
 import groupedCities from '../resources/cities.js'
 
 const AddFriendFragment = (props) => {
-    const {currUser} = props;
+    const {currUser,showMessageFn} = props;
     const [name,setName] = useState('');
     const [location,setLocation] = useState('');
     const locationInput = useRef(null);
@@ -35,6 +35,7 @@ const AddFriendFragment = (props) => {
             ]
         })
         setName('');setLocation('');setNotes('');
+        showMessageFn(true)
         props.close(false);
     }    
     

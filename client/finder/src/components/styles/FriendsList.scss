@@ -7,10 +7,22 @@ html {
     padding: 0;
 }
 .fl-wrapper {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     padding: 64px;
+    p {
+        text-align: center;
+        color: $disabledText;
+        font-size: 14px;
+        text-decoration: underline;
+        text-decoration-color: $disabledText;
+        cursor: pointer;
+        display: none;
+        &.show {
+            display: block;
+        }
+    }
     & .fl-container {
         display: grid;
         grid-template-columns: repeat(3,1fr);

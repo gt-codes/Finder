@@ -36,9 +36,10 @@ const Spinner = () => {
 }
 
 const FriendsList = (props) => {
+    const {showMessage} = props;
     const {friends,loading} = props.getFriendsQuery;     
     const [selected, setSelected] = useState('');
-    
+        
     useEffect(() => {
         props.chooseFriend(selected)
     }, [selected,props])
@@ -106,6 +107,7 @@ const FriendsList = (props) => {
         :
         (
             <div className='fl-wrapper'>
+                <p className={showMessage ? 'show' : ''} onClick={() => {window.location.reload(true);return false}}>Click here to see changes</p>
                 <div className='fl-container'>
                     {
                         friends.map((item,idx) => (
@@ -134,6 +136,7 @@ export default compose(
         name: "queryFriendsByCity",
         options: props => {
             return {
+                fetchPolicy: "cache-and-network",
                 variables: {
                     city: props.query
                 }
