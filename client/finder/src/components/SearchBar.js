@@ -22,6 +22,10 @@ const SearchBar = (props) => {
                         onChange={e => setQuery(e.target.value)}
                         placeholder={placeholder}
                     />
+                    <i style={{display:query === '' ? 'none' : 'block'}} 
+                        className="material-icons close" 
+                        onClick={() => {setQuery('');props.updateQuery('')}}
+                    >close</i>                  
                 </div>
                 <div className='sb-f'>
                     <Dropdown updateFilter={setFilter} currFilter={filter.charAt(0).toUpperCase() + filter.slice(1)}/>
