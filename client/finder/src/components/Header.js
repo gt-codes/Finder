@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles/Header.css';
 
-const Header = (props) => {
+const Header = ({currUser,onClick}) => {
     return (
         <div className='header-container'>
             <h1>Finder</h1>
-            <button onClick={props.onClick}>Logout</button>
+            <p>{!currUser ? '' : currUser.email}</p>
+            <button onClick={onClick}>Logout</button>
         </div>
     );
 }

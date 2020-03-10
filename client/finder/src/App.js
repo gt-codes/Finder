@@ -49,7 +49,7 @@ const App = () => {
     (
       <ApolloProvider client={client}>
         <div className='wrapper'>
-          <Header onClick={() => firebase.auth().signOut()}/>
+          <Header onClick={() => firebase.auth().signOut()} currUser={currUser ? currUser : null}/>
           <SearchBar updateQuery={setSearchQuery} updateFilter={setFilter}/>
           <FriendsList 
             query={searchQuery} 
